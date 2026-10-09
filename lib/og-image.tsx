@@ -1,0 +1,79 @@
+import { ImageResponse } from "next/og";
+
+export const OG_SIZE = { width: 1200, height: 630 };
+export const OG_CONTENT_TYPE = "image/png";
+
+type OgImageProps = {
+  kicker?: string;
+  title: string;
+  description: string;
+};
+
+export function renderOgImage({
+  kicker = "Hemloc",
+  title,
+  description,
+}: OgImageProps): ImageResponse {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          background: "#f4e9e1",
+          padding: "72px",
+          fontFamily: "ui-sans-serif, system-ui, sans-serif",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            color: "#ff6a3d",
+            fontSize: 28,
+            fontWeight: 700,
+          }}
+        >
+          <svg width="48" height="48" viewBox="0 0 32 32">
+            <rect width="32" height="32" rx="8" fill="#3b6bff" />
+            <g fill="#fff4ec">
+              <ellipse cx="16" cy="16.2" rx="4.1" ry="8.1" />
+              <ellipse cx="16" cy="22.2" rx="4.4" ry="2.4" />
+              <path d="M18.82 8.55A1.55 2.45 38 1 1 16.38 6.65A1.55 2.45 38 1 1 18.82 8.55M15.56 8.85A3.5 1.55 -38 1 1 10.04 13.15A3.5 1.55 -38 1 1 15.56 8.85M21.96 13.15A3.5 1.55 38 1 1 16.44 8.85A3.5 1.55 38 1 1 21.96 13.15M15.28 11.67A4.3 1.7 -36 1 1 8.32 16.73A4.3 1.7 -36 1 1 15.28 11.67M23.68 16.73A4.3 1.7 36 1 1 16.72 11.67A4.3 1.7 36 1 1 23.68 16.73M15.26 14.86A4.9 1.85 -34 1 1 7.14 20.34A4.9 1.85 -34 1 1 15.26 14.86M24.86 20.34A4.9 1.85 34 1 1 16.74 14.86A4.9 1.85 34 1 1 24.86 20.34M15.49 18.19A5.3 1.95 -32 1 1 6.51 23.81A5.3 1.95 -32 1 1 15.49 18.19M25.49 23.81A5.3 1.95 32 1 1 16.51 18.19A5.3 1.95 32 1 1 25.49 23.81" />
+              <rect x="14.75" y="23" width="2.5" height="4.2" rx="1.15" />
+            </g>
+          </svg>
+          {kicker}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div
+            style={{
+              color: "#111111",
+              fontSize: 72,
+              fontWeight: 800,
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            {title}
+          </div>
+          <div
+            style={{
+              color: "#5c564f",
+              fontSize: 32,
+              lineHeight: 1.35,
+              maxWidth: 920,
+            }}
+          >
+            {description}
+          </div>
+        </div>
+      </div>
+    ),
+    { ...OG_SIZE },
+  );
+}
